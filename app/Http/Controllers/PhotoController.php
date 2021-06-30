@@ -26,7 +26,7 @@ class PhotoController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages/photo_form');
     }
 
     /**
@@ -37,7 +37,20 @@ class PhotoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      //criação de um objeto tipo Photo
+      $photo = new Photo();
+
+      //alterando os atributos do objeto
+      $photo->title = $request->title;
+      $photo->date = $request->date;
+      $photo->description = $request->description;
+      $photo->photo_url = "teste";
+
+      //inserindo no banco de dados
+      $photo->save();
+
+      //redirecionar para a tela principal
+      return redirect('/');
     }
 
     /**
@@ -59,7 +72,8 @@ class PhotoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $photo = Photo::findOrFail($id);
+        return view('pages/photo_form',['photo'=>$photo]);
     }
 
     /**
@@ -71,7 +85,16 @@ class PhotoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $photo = Photo::findOrFail($request->id);
+
+        $photo->title = $request->title;
+        $photo->date = $request->date;
+        $photo->description = $request->description;
+        $photo->photo_url = "teste";
+
+        //alterando no bd
+        $photo->update();
+        return redirect('/');
     }
 
     /**

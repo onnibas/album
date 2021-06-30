@@ -11,6 +11,9 @@
     <!-- CSS Personalizado-->
     <link rel="stylesheet" href="{{asset('/css/estilo.css')}}">
 
+    <!--Fontawesome-->
+    <script src="https://kit.fontawesome.com/f889f8f087.js" crossorigin="anonymous"></script>
+
     <title>Álbum</title>
   </head>
   <body>

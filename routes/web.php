@@ -14,8 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PhotoController::class,'index']);
+//rota do inicio
+Route::get('/',[PhotoController::class,'index']);
 
-Route::get('/photos/new', function () {
-  return view('pages/photo_form');
-});
+//rota do formulário de cadastro
+Route::get('/photos/new',[PhotoController::class,'create']);
+
+//rota que exibe o formulario de edição
+Route::get('/photos/edit/{id}',[PhotoController::class,'edit']);
+
+//rota que insere uma nova foto no bd
+Route::post('/photos', [PhotoController::class,'store']);
+
+//rota que altera a imagem no banco de dados
+Route::put('photos/{id}',[PhotoController::class,'update']);
