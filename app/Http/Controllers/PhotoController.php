@@ -110,6 +110,7 @@ class PhotoController extends Controller
      */
     public function destroy($id)
     {
-        //
+      Photo::findOrFail($id)->delete();
+      return redirect('/photos');
     }
 }
