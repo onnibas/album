@@ -23,7 +23,7 @@
               <form action="/photos/{{$photo->id}}" method="POST">
               @method('PUT')
             @else
-              <form action="/photos" method="POST">
+              <form action="/photos" method="POST" enctype="multipart/form-data">
             @endif
             @csrf
 
@@ -32,13 +32,14 @@
               {{-- Coluna da Imagem --}}
               <div class="col-lg-6">
                 <div class="d-flex flex-column h-100">
-                  <div
+                  <div id="imgPrev"
                     class="miniatura img-thumbnail d-flex flex-column justify-content-center align-items-center h-100 mt-4">
-                    <i class="far fa-image"></i> <br>
+                    {{--<i class="far fa-image"></i>--}}
+                    <img id="imgPrev" height="340" class="w-100" style="object-fit: cover;" src="{{asset('/img/img_padrao.png')}}">
                   </div>
                   <div class="form-group mt-2">
-                    <div class="custom-file"> <input type="file" class="custom-file-input" id="customFile"> <label
-                      class="custom-file-label" for="customFile">Nenhum arquivo selecionado</label> </div>
+                    <div class="custom-file">
+                      <input id="photo" name="photo" type="file" class="custom-file-input" onchange="loadFile(event)">
                     </div>
                   </div>
                 </div> {{-- Fim - Coluna da Imagem --}}
@@ -79,9 +80,12 @@
                 </div> {{-- Fim - Coluna das Inputs --}}
               </div> {{-- Fim - Row --}}
             </form> {{-- Fim - Form --}}
+          </div>
         </div> {{-- Fim - Card Body --}}
       </div> {{-- Fim - Card --}}
     </div> {{-- Fim - Coluna Card Form --}}
   </div>{{-- Fim - Coluna BTN Voltar --}}
 </div> {{-- Fim do Container --}}
-  @endsection
+
+<script src="{{asset('/js/script.js')}}"></script>
+@endsection
