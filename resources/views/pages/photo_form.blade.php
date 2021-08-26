@@ -11,13 +11,12 @@
     <div class="col-12">
       <div class="card shadow bg-white rounded">
         <div class="card-header gradient text-white">
-          <h2 class="card-title">
+          <h2 class="card-title p-2">
             <i class="fas fa-image mx-2"></i>
             {{isset($photo) ? 'Alterar Foto' : 'Nova Foto'}}
           </h2>
         </div>
-        <div class="card-body">
-          <div class="p-md-3">
+        <div class="card-body p-4">
 
             @if (isset($photo))
               <form action="/photos/{{$photo->id}}" method="POST">
@@ -32,17 +31,16 @@
               {{-- Coluna da Imagem --}}
               <div class="col-lg-6">
                 <div class="d-flex flex-column h-100">
-                  <div id="imgPrev"
-                    class="miniatura img-thumbnail d-flex flex-column justify-content-center align-items-center h-100 mt-4">
-                    {{--<i class="far fa-image"></i>--}}
+                  <div class="miniatura img-thumbnail d-flex flex-column justify-content-center align-items-center h-100 mt-4">
                     <img id="imgPrev" height="340" class="w-100" style="object-fit: cover;" src="{{asset('/img/img_padrao.png')}}">
                   </div>
                   <div class="form-group mt-2">
                     <div class="custom-file">
-                      <input id="photo" name="photo" type="file" class="custom-file-input" onchange="loadFile(event)">
+                      <input id="photo" name="photo" type="file" class="custom-file-input" id="photo_url" onchange="loadFile(event)" required>
                     </div>
                   </div>
-                </div> {{-- Fim - Coluna da Imagem --}}
+                </div>
+              </div> {{-- Fim - Coluna da Imagem --}}
 
                 {{-- Coluna das Inputs --}}
                 <div class="col-lg-6">
@@ -58,7 +56,7 @@
                   </div>
 
                     {{-- Data --}}
-                  <div class="form-group"> <label for="date">Data</label>
+                  <div class="form-group mt-3"> <label for="date">Data</label>
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <div class="input-group-text"> <i class="far fa-calendar-alt"></i> </div>
@@ -67,20 +65,19 @@
                   </div>
 
                     {{-- Descrição --}}
-                  <div class="form-group"> <label for="description">Descrição</label> <textarea id="description"
+                  <div class="form-group mt-3"> <label for="description">Descrição</label> <textarea id="description"
                       name="description" cols="40" rows="5" class="form-control"
                       required placeholder="Digite uma pequena descrição da imagem">{{$photo->description ?? null}}</textarea>
                   </div>
 
                     {{-- Botões --}}
-                  <div class="form-group d-flex">
-                    <button name="submit" type="reset" class="btn btn-laranja">Limpar</button>
-                    <button name="submit" type="submit" class="btn btn-primary">Salvar</button>
+                  <div class="form-group d-flex mt-3">
+                    <button name="submit" type="reset" class="btn btn-laranja flex-grow-1 me-2">Limpar</button>
+                    <button name="submit" type="submit" class="btn btn-primary flex-grow-1">Salvar</button>
                   </div>
                 </div> {{-- Fim - Coluna das Inputs --}}
               </div> {{-- Fim - Row --}}
             </form> {{-- Fim - Form --}}
-          </div>
         </div> {{-- Fim - Card Body --}}
       </div> {{-- Fim - Card --}}
     </div> {{-- Fim - Coluna Card Form --}}

@@ -30,4 +30,3 @@ function loadFile(event) {
   //altera a propriedade src para o link da imagem
   imgPrev.src = url
 }
-
