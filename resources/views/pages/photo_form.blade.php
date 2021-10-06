@@ -19,7 +19,7 @@
         <div class="card-body p-4">
 
             @if (isset($photo))
-              <form action="/photos/{{$photo->id}}" method="POST">
+              <form action="/photos/{{$photo->id}}" method="POST" enctype="multipart/form-data">
               @method('PUT')
             @else
               <form action="/photos" method="POST" enctype="multipart/form-data">
@@ -32,11 +32,11 @@
               <div class="col-lg-6">
                 <div class="d-flex flex-column h-100">
                   <div class="miniatura img-thumbnail d-flex flex-column justify-content-center align-items-center h-100 mt-4">
-                    <img id="imgPrev" height="340" class="w-100" style="object-fit: cover;" src="{{asset('/img/img_padrao.png')}}">
+                    <img id="imgPrev" height="340" class="w-100" style="object-fit: cover;" src="{{isset($photo->photo_url) ? url("/storage/photos/$photo->photo_url") : asset('/img/img_padrao.png')}}">
                   </div>
                   <div class="form-group mt-2">
                     <div class="custom-file">
-                      <input id="photo" name="photo" type="file" class="custom-file-input" id="photo_url" onchange="loadFile(event)" required>
+                      <input id="photo" name="photo" type="file" accept="image/png, image/jpeg, image/gif" class="custom-file-input" id="photo_url" onchange="loadFile(event)" @empty($photo) required @endempty>
                     </div>
                   </div>
                 </div>
@@ -50,8 +50,8 @@
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <div class="input-group-text"> <i class="fas fa-image"></i> </div>
-                      </div> <input id="title" name="title" type="text" class="form-control"
-                          required placeholder="Digite o título da sua imagem" value="{{$photo->title ?? null}}">
+                      </div>
+                      <input id="title" name="title" type="text" class="form-control" required placeholder="Digite o título da sua imagem" value="@empty($photo) required @endempty">
                     </div>
                   </div>
 
